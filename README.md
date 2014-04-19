@@ -61,7 +61,8 @@ do_size_id: 66 #512MB - 20GB 1CPU
 do_region_id: 5 #ams2
 ```
 
-###Change variables values according to your needs in .yml files inside the /vars folder
+###Variables values
+Change variables values according to your needs in .yml files inside the /vars folder
 
 ###Run Ansible playbook
 ```shell
