@@ -12,7 +12,7 @@
     region_id: "{{ do_region_id }}"
     private_networking: yes
     #backups_enabled: yes
-    wait_timeout: 400
+    wait_timeout: 500
     unique_name: yes
     virtio: yes
   register: do_instance
