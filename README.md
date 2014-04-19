@@ -56,7 +56,7 @@ Grab the ids that you need
 do_client_id: yourclientid
 do_api_key: yourapikey
 do_ssh_key_ids: yourid1, yourid2
-do_image_id: 3102789 #Centos 6.5 x64
+do_image_id: 3240850 #Centos 6.5 x64
 do_size_id: 66 #512MB - 20GB 1CPU
 do_region_id: 5 #ams2
 ```
