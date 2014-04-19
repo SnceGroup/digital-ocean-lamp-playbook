@@ -38,3 +38,5 @@
     - include: include/mysql.yml
     #Memcached
     - include: include/memcached.yml
+    #Node.js and npm
+    - include: include/node.yml

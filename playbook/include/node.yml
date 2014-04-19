@@ -1,0 +1,5 @@
+- name: Install node.js and npm
+  yum: pkg={{ item }} state=latest enablerepo=epel
+  with_items:
+    - nodejs
+    - npm
