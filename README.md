@@ -112,3 +112,5 @@ $ ansible-playbook -i local playbook/provisioning.yml
 * mysql
 * MySQL-python
 * memcached (1.4.x)
+* node.js
+* npm
