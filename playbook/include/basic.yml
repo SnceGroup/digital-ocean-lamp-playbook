@@ -3,11 +3,11 @@
 - name: Set SELinux to permissive
   action: selinux policy=targeted state=permissive
 - name: Download and enable the EPEL repository definitions
-  shell: command rpm -Uvh --replacepkgs http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+  shell: rpm -Uvh --replacepkgs http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 - name: Download and enable the Remi repository definitions
-  shell: command rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+  shell: rpm -Uvh --replacepkgs http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 - name: Download and enable the rpmforge repository definitions
-  shell: command rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+  shell: rpm -Uvh --replacepkgs http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
 - name: Change timezone
   file: src=/usr/share/zoneinfo/Europe/Rome dest=/etc/localtime
 - name: Install Python PIP
