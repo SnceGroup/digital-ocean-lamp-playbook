@@ -1,0 +1,30 @@
+- name: Ensure python-selinux is installed on all nodes.
+  yum: pkg=libselinux-python state=latest
+- name: Set SELinux to permissive
+  action: selinux policy=targeted state=permissive
+- name: Download and enable the EPEL repository definitions
+  shell: command rpm -Uvh --replacepkgs http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+- name: Download and enable the Remi repository definitions
+  shell: command rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+- name: Download and enable the rpmforge repository definitions
+  shell: command rpm -Uvh http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+- name: Change timezone
+  file: src=/usr/share/zoneinfo/Europe/Rome dest=/etc/localtime
+- name: Install Python PIP
+  yum: pkg=python-pip state=latest
+- name: Install boto via PIP
+  pip: name=boto state=latest
+- name: Install GIT
+  yum: pkg=git state=latest
+- name: Install VIM
+  yum: pkg=vim state=latest
+- name: Install wget
+  yum: pkg=wget state=latest
+- name: Install htop
+  yum: pkg=htop state=latest
+- name: Install zip
+  yum: pkg=zip state=latest
+- name: Install unzip
+  yum: pkg=unzip state=latest
+- name: Install telnet
+  yum: pkg=telnet state=latest

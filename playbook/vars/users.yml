@@ -1,0 +1,3 @@
+users_base_folder: /home
+users:
+  - { user: 'snce', ssh_key_passphrase: 'YOUR_KEY_PASSPHRASE' }

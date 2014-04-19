@@ -1,0 +1,20 @@
+- name: Install PHP 5.4 (main packages)
+  yum: pkg={{ item }} state=latest enablerepo=remi
+  with_items:
+    - "{{ php_main_packages }}"
+- name: Install others PHP 5.4 packages 1
+  yum: pkg={{ item }} state=latest enablerepo=remi
+  with_items:
+    - "{{ php_other_packages_1 }}"
+- name: Install others PHP 5.4 packages 2
+  yum: pkg={{ item }} state=latest enablerepo=remi
+  with_items:
+    - "{{ php_other_packages_2 }}"
+- name: Update PHP settings
+  ini_file: dest=/etc/php.ini section={{ item.section }} option={{ item.option }} value={{ item.value }} backup=yes
+  with_items:
+    - "{{ php_ini_settings }}"
+- name: Install composer
+  shell:
+    curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f ~/composer.phar /usr/local/bin/composer
+    creates=/usr/local/bin/composer

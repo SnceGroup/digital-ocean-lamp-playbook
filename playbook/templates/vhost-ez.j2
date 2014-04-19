@@ -1,0 +1,40 @@
+#{{ item.name }}
+NameVirtualHost *:80
+
+<VirtualHost *:80>
+    ServerName {{ item.server_name }}
+    #ServerAlias www.domain.tld
+
+    DocumentRoot {{ item.doc_root }}
+    <Directory {{ item.doc_root }}>
+        # enable the .htaccess rewrites
+        AllowOverride All
+        Order allow,deny
+        Allow from All
+        Options FollowSymLinks
+    </Directory>
+
+    ErrorLog {{ item.logs }}/{{ item.name }}_error.log
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    CustomLog {{ item.logs }}/{{ item.name }}.log common
+
+    RewriteEngine On
+    RewriteRule ^/api/[^/]+/v1/ /index_rest.php [L]
+    RewriteRule ^/var/([^/]+/)?storage/images(-versioned)?/.* - [L]
+    RewriteRule ^/var/([^/]+/)?cache/(texttoimage|public)/.* - [L]
+    RewriteRule ^/design/[^/]+/(stylesheets|images|javascript|fonts)/.* - [L]
+    RewriteRule ^/share/icons/.* - [L]
+    RewriteRule ^/extension/[^/]+/design/[^/]+/(stylesheets|flash|images|lib|javascripts?)/.* - [L]
+    RewriteRule ^/packages/styles/.+/(stylesheets|images|javascript)/[^/]+/.* - [L]
+    RewriteRule ^/packages/styles/.+/thumbnail/.* - [L]
+    RewriteRule ^/var/storage/packages/.* - [L]
+    RewriteRule ^/favicon\.ico - [L]
+    RewriteRule ^/design/standard/images/favicon\.ico - [L]
+    RewriteRule ^/robots\.txt - [L]
+    RewriteRule ^/w3c/p3p\.xml - [L]
+    RewriteRule ^/bundles/ - [L]
+    RewriteRule ^/css/.*\.css - [L]
+    RewriteRule ^/js/.*\.js - [L]
+    RewriteRule ^/images/.* - [L]
+    RewriteRule .* /index.php
+</VirtualHost>

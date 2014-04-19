@@ -1,0 +1,6 @@
+- name: Install Memcached
+  yum: pkg=memcached state=latest
+- name: Ensure Memcached is running automatically at boot time
+  action: command /sbin/chkconfig memcached on
+  notify:
+  - restart memcached

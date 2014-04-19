@@ -1,0 +1,12 @@
+[mysqld]
+innodb_buffer_pool_size={{ mysql_innodb_buffer_pool_size }}
+innodb_log_file_size={{ mysql_innodb_log_file_size }}
+performance_schema = {{ mysql_performance_schema }}
+innodb_flush_neighbors=0
+innodb_flush_log_at_trx_commit=2
+
+skip-name-resolve
+
+# Default to UTF-8 for text columns
+character-set-server=utf8mb4
+collation-server=utf8mb4_general_ci

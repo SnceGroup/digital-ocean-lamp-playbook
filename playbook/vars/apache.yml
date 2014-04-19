@@ -1,0 +1,3 @@
+apache_user: apache
+apache_vhosts_ez:
+  - { name: 'snce', user: 'snce', server_name: 'xxx.sncegrup.com', doc_root: '/var/www/xxx/web', logs: '/var/log/httpd' }

@@ -1,0 +1,40 @@
+---
+- name: Digital Ocean Provisioning
+  hosts: 127.0.0.1
+  connection: local
+  vars_files:
+    - vars/do.yml
+  tasks:
+    #Digital Ocean VPS instance creation
+    - include: include/do.yml
+- name: Configuring provisioned server(s)
+  handlers:
+    - include: handlers/handlers.yml
+  hosts: do_instances
+  gather_facts: true
+  vars_files:
+    - vars/iptables.yml
+    - vars/users.yml
+    - vars/apache.yml
+    - vars/php.yml
+    - vars/mysql.yml
+  user: root
+  tasks:
+    #System Update
+    - include: include/system-update.yml
+    #Basic install
+    - include: include/basic.yml
+    #Iptables
+    - include: include/iptables.yml
+    #Users
+    - include: include/users.yml
+    #ImageMagick
+    - include: include/imagemagik.yml
+    #Apache
+    - include: include/apache.yml
+    #PHP
+    - include: include/php.yml
+    #Mysql
+    - include: include/mysql.yml
+    #Memcached
+    - include: include/memcached.yml

@@ -1,0 +1,6 @@
+- name: Install imagemagick
+  yum: pkg={{ item }} state=latest
+  with_items:
+    - ImageMagick
+    - ImageMagick-devel
+    - ImageMagick-perl

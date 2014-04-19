@@ -1,0 +1,7 @@
+do_client_id: YOUR_CLIENT_ID
+do_api_key: YOUR_API_KEY
+do_droplet_name: DROPLET_NAME
+do_ssh_key_ids: YOUR_KEY_ID
+do_image_id: 3102789 #Centos 6.5 x64
+do_size_id: 66 #512MB - 20GB 1CPU
+do_region_id: 5 #ams2

@@ -1,0 +1,8 @@
+- name: Add users
+  user: name={{ item.user }} home={{ users_base_folder }}/{{ item.user }} generate_ssh_key=yes ssh_key_passphrase={{ item.ssh_key_passphrase }}
+  with_items:
+    - '{{ users }}'
+- name: Add keys authorization
+  shell: cat {{ users_base_folder }}/{{ item.user }}/.ssh/id_rsa.pub >> {{ users_base_folder }}/{{ item.user }}/.ssh/authorized_keys && chown {{ item.user }}:{{ item.user }} {{ users_base_folder }}/{{ item.user }}/.ssh/authorized_keys && chmod 600 {{ users_base_folder }}/{{ item.user }}/.ssh/authorized_keys
+  with_items:
+    - '{{ users }}'

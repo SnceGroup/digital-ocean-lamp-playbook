@@ -1,0 +1,27 @@
+php_main_packages:
+  - php
+  - php-cli
+  - php-common
+  - php-devel
+  - mod_php
+php_other_packages_1:
+  - php-gd
+  - php-mbstring
+  - php-pdo
+  - php-pecl-apc
+  - php-xml
+  - php-curl
+php_other_packages_2:
+  - php-imagick
+  - php-intl
+  - php-memcache
+  - php-mcrypt
+  - php-mhash
+  - php-mysqlnd
+  - php-xsl
+php_ini_settings:
+  - { section: 'PHP', option: 'memory_limit', value: '128M' }
+  - { section: 'PHP', option: 'upload_max_filesize', value: '10M' }
+  - { section: 'PHP',option: 'post_max_size', value: '10M' }
+  - { section: 'PHP',option: 'max_execution_time', value: '300' }
+  - { section: 'global', option: 'date.timezone', value: 'Europe/Rome' }

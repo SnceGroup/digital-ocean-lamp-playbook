@@ -1,0 +1,28 @@
+- name: Download the MySQL official repository
+  shell: wget http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm
+- name: Install MySQL repository
+  shell: yum -y localinstall mysql-community-release-el6-*.noarch.rpm
+- name: Install MySQL
+  action: yum name={{ item }}
+  with_items:
+    - "{{ mysql_packages }}"
+- name: Ensure mysqld is running automatically at boot time and start it
+  action: command /sbin/chkconfig mysqld on
+  notify:
+    - restart mysqld
+- name: Copy my.cnf file with production settings
+  template: src=../templates/my.cnf.j2 dest=/etc/my.cnf owner=root mode=0600
+- name: New directory inizialization
+  shell: mysql_install_db --user=mysql --ldata={{ mysql_data_directory }}
+- name: Start mysqld
+  service: name=mysqld state=started enabled=true
+- name: Add username to ~/.my.cnf
+  ini_file: >
+    dest=~/.my.cnf section=client
+    option=user value=root
+- name: Add password to ~/.my.cnf
+  ini_file: >
+    dest=~/.my.cnf section=client
+    option=password value=
+- name: mysql_secure_installation
+  action: shell mysql -u root -e "DELETE FROM mysql.user WHERE User=''; DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1'); DROP DATABASE IF EXISTS test; FLUSH PRIVILEGES; UPDATE mysql.user SET password=PASSWORD('{{ mysql_root_password }}') WHERE user='root'; FLUSH PRIVILEGES;"
