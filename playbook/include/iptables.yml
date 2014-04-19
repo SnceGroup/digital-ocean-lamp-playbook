@@ -1,4 +1,4 @@
-- name: Open the correct IPTables ports
+- name: Open standard IPTables ports
   lineinfile: dest=/etc/sysconfig/iptables
               regexp="^-A INPUT -p {{item.protocol}} -m {{item.protocol}} --dport {{item.port}} -j ACCEPT$"
               line="-A INPUT -p {{item.protocol}} -m {{item.protocol}} --dport {{item.port}} -j ACCEPT"
