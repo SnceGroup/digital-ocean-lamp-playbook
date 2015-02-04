@@ -1,3 +1,8 @@
 apache_user: apache
 apache_vhosts_ez:
-  - { name: 'snce', user: 'snce', server_name: 'xxx.sncegrup.com', doc_root: '/var/www/xxx/web', logs: '/var/log/httpd' }
+  -
+      name: 'snce'
+      user: 'snce'
+      server_name: 'WEBSITE_URL'
+      doc_root: '/var/www/WEBSITE_URL/html/web'
+      logs: '/var/www/WEBSITE_URL/logs/'
