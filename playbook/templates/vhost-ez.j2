@@ -3,6 +3,7 @@ NameVirtualHost *:80
 
 <VirtualHost *:80>
     ServerName {{ item.server_name }}
+    ServerAlias www.{{ item.server_name }}
     #ServerAlias www.domain.tld
 
     DocumentRoot {{ item.doc_root }}
