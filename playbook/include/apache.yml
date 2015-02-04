@@ -1,7 +1,7 @@
 - name: Ensure httpd package is installed
   yum: pkg=httpd state=latest
 - name: Ensure httpd is running automatically at boot time and start it
-  action: systemctl enable httpd.service
+  shell: systemctl enable httpd.service
 #eZ Publish standard VHost
 - name: Html folders creations
   file: path={{ item.doc_root }} state=directory owner={{ item.user }} group={{ item.user }}
