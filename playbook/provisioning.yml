@@ -19,13 +19,14 @@
     - vars/php.yml
     - vars/mysql.yml
   user: root
+  #Iptables
+  roles:
+      - { role: geerlingguy.firewall }
   tasks:
     #System Update
     - include: include/system-update.yml
     #Basic install
     - include: include/basic.yml
-    #Iptables
-    - include: include/iptables.yml
     #Users
     - include: include/users.yml
     #ImageMagick
