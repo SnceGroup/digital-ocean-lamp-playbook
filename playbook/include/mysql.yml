@@ -7,7 +7,7 @@
   with_items:
     - "{{ mysql_packages }}"
 - name: Ensure mysqld is running automatically at boot time and start it
-  action: command /sbin/chkconfig mysqld on
+  shell: systemctl enable mysqld.service
   notify:
     - restart mysqld
 - name: Copy my.cnf file with production settings

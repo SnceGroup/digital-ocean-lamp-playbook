@@ -3,7 +3,7 @@ mysql_packages:
   - mysql-community-server
   - MySQL-python
 mysql_data_directory: /var/lib/mysql
-mysql_root_password: 'YOUR_ROOT_PASS'
+mysql_root_password: 'Toiswio4892'
 mysql_innodb_buffer_pool_size: 32M
 mysql_innodb_log_file_size: 64M
 mysql_performance_schema: off

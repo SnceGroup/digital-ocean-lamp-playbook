@@ -1,13 +1,13 @@
-- name: Install PHP 5.4 (main packages)
-  yum: pkg={{ item }} state=latest enablerepo=remi
+- name: Install PHP 5.5 (main packages)
+  yum: pkg={{ item }} state=latest enablerepo=remi,remi-php55
   with_items:
     - "{{ php_main_packages }}"
-- name: Install others PHP 5.4 packages 1
-  yum: pkg={{ item }} state=latest enablerepo=remi
+- name: Install others PHP 5.5 packages 1
+  yum: pkg={{ item }} state=latest enablerepo=remi,remi-php55
   with_items:
     - "{{ php_other_packages_1 }}"
-- name: Install others PHP 5.4 packages 2
-  yum: pkg={{ item }} state=latest enablerepo=remi
+- name: Install others PHP 5.5 packages 2
+  yum: pkg={{ item }} state=latest enablerepo=remi,remi-php55
   with_items:
     - "{{ php_other_packages_2 }}"
 - name: Update PHP settings
@@ -17,3 +17,5 @@
 - name: Install composer
   shell:
     curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+- name: Enable swap to avoid Composer Error
+  shell: /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024 && /sbin/mkswap /var/swap.1 && /sbin/swapon /var/swap.1
