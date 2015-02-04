@@ -55,7 +55,7 @@ Grab the ids that you need
 ```yml
 do_client_id: yourclientid
 do_api_key: yourapikey
-do_ssh_key_ids: yourid1, yourid2
+do_ssh_key_ids: yourid1, yourid2 #Comma separated list
 do_image_id: 3240850 #Centos 6.5 x64
 do_size_id: 66 #512MB - 20GB 1CPU
 do_region_id: 5 #ams2
@@ -63,6 +63,12 @@ do_region_id: 5 #ams2
 
 ###Variables values
 Change variables values according to your needs in .yml files inside the /vars folder
+
+###Install roles
+Install the following roles
+```bash
+ansible-galaxy install geerlingguy.firewall
+```
 
 ###Run Ansible playbook
 ```shell
