@@ -7,26 +7,31 @@
   tasks:
     #Digital Ocean VPS instance creation
     - include: include/do.yml
+- name: Waiting for server(s) availability
+  hosts: do_instances
+  gather_facts: no
+  tasks:
+      - debug: msg="Instance {{ inventory_hostname }}"
+      - local_action: wait_for port=22 host="{{ inventory_hostname }}" search_regex=OpenSSH delay=10 timeout=10000
 - name: Configuring provisioned server(s)
   handlers:
     - include: handlers/handlers.yml
   hosts: do_instances
-  gather_facts: true
+  gather_facts: no
   vars_files:
-    - vars/iptables.yml
+    - vars/firewall.yml
     - vars/users.yml
     - vars/apache.yml
     - vars/php.yml
     - vars/mysql.yml
   user: root
-  #Iptables
-  roles:
-      - { role: geerlingguy.firewall }
   tasks:
     #System Update
     - include: include/system-update.yml
     #Basic install
     - include: include/basic.yml
+    #Firewalld Setup
+    - include: include/firewall.yml
     #Users
     - include: include/users.yml
     #ImageMagick
@@ -41,3 +46,11 @@
     - include: include/memcached.yml
     #Node.js and npm
     - include: include/node.yml
+- name: Restart machine
+  hosts: do_instances
+  user: root
+  tasks:
+      command: shutdown -r now "Ansible provisioning completed"
+      async: 0
+      poll: 0
+      ignore_errors: true
