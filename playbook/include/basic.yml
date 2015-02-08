@@ -8,8 +8,8 @@
   shell: rpm -Uvh --replacepkgs http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 - name: Download and enable the rpmforge repository definitions
   shell: rpm -Uvh --replacepkgs http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el7.rf.x86_64.rpm
-- name: Change timezone
-  file: src=/usr/share/zoneinfo/Europe/Rome dest=/etc/localtime
+- name: Set proper timezone
+  shell: sudo timedatectl set-timezone Europe/Rome
 - name: Install Python PIP
   yum: pkg=python-pip state=latest
 - name: Install boto via PIP
@@ -30,3 +30,11 @@
   yum: pkg=telnet state=latest
 - name: Install GCC
   yum: pkg=gcc state=latest
+- name: Install NTP
+  yum: pkg=ntp state=latest
+- name: Ensure that NTP is running
+  service: name=ntpd state=started
+- name: Set NTP as a startup item
+  shell: sudo systemctl enable ntpd
+- name: Enable swap file
+  shell: fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
