@@ -86,11 +86,12 @@ $ ansible-playbook -i local playbook/provisioning.yml
 * zip
 * unzip
 * telnet
+* ntp
 * ImageMagick
 * ImageMagick-devel
 * ImageMagick-perl
 * httpd
-* php (5.4.x)
+* php (5.5.x)
 * php-cli
 * php-common
 * php-devel
