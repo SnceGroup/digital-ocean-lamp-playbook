@@ -15,8 +15,8 @@ sudo pip install dopy
 ###Discover Digital Ocean internal ids (sizes, regions, images, ssh_keys)
 
 ```shell
-$ export DO_API_KEY=YOUR DIGITAL OCEAN API KEY
 $ export DO_CLIENT_ID=YOUR DIGITAL OCEAN CLIENT ID
+$ export DO_API_KEY=YOUR DIGITAL OCEAN API KEY
 $ chmod +x do.sh
 $ ./do.sh
 ```
@@ -63,12 +63,6 @@ do_region_id: 5 #ams2
 
 ###Variables values
 Change variables values according to your needs in .yml files inside the /vars folder
-
-###Install roles
-Install the following roles
-```bash
-ansible-galaxy install geerlingguy.firewall
-```
 
 ###Run Ansible playbook
 ```shell
