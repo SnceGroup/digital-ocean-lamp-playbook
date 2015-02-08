@@ -3,16 +3,25 @@
 - name: Ensure httpd is running automatically at boot time and start it
   shell: systemctl enable httpd.service
 #eZ Publish standard VHost
-- name: Html and Logs folders creation
+- name: Html folder creations
   file: path={{ item.doc_root }} state=directory owner={{ item.user }} group={{ item.user }}
+  with_items:
+    - "{{ apache_vhosts_ez }}"
+- name: Logs folder creations
   file: path={{ item.logs }} state=directory owner={{ item.user }} group={{ item.user }}
+  with_items:
+    - "{{ apache_vhosts_ez }}"
+- name: Set proper ACL permission for apache user
   acl: name={{ item.logs }} entity=apache etype=user permissions=rwx default=yes state=present
+  with_items:
+    - "{{ apache_vhosts_ez }}"
+- name: Set proper ACL permission for {{ item.user }} user
   acl: name={{ item.logs }} entity={{ item.user }} etype=user permissions=rwx default=yes state=present
   with_items:
-    - '{{ apache_vhosts_ez }}'
+    - "{{ apache_vhosts_ez }}"
 - name: Install eZ Publish VHost
   action: template src=templates/vhost-ez.j2 dest=/etc/httpd/conf.d/{{item.name}}.conf
   with_items:
-    - '{{ apache_vhosts_ez }}'
+    - "{{ apache_vhosts_ez }}"
   notify:
     - restart httpd
