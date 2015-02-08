@@ -4,5 +4,5 @@
   service: name=httpd state=restarted
 - name: restart mysqld
   service: name=mysqld state=restarted
-- name: restart iptables
-  service: name=iptables state=restarted
+- name: restart firewalld
+  service: name=firewalld state=restarted

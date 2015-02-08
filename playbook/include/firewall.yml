@@ -1,0 +1,10 @@
+- name: Ensure that Firewalld is running
+  service: name=firewalld state=started
+- name: Open Firewalld select ports
+  shell: firewall-cmd --permanent --add-port={{ item }}/tcp
+  with_items:
+    - "{{ firewall_allowed_tcp_ports }}"
+- name: Set Firewalld as a startup item
+  shell: sudo systemctl enable firewalld
+  notify:
+    - restart firewalld
