@@ -17,5 +17,3 @@
 - name: Install composer
   shell:
     curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-- name: Enable swap to avoid Composer Error
-  shell: /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024 && /sbin/mkswap /var/swap.1 && /sbin/swapon /var/swap.1
