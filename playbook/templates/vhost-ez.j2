@@ -14,9 +14,9 @@ NameVirtualHost *:80
         Options FollowSymLinks
     </Directory>
 
-    ErrorLog {{ item.logs }}/{{ item.name }}_error.log
+    ErrorLog {{ item.logs }}{{ item.name }}_error.log
     LogFormat "%h %l %u %t \"%r\" %>s %b" common
-    CustomLog {{ item.logs }}/{{ item.name }}.log common
+    CustomLog {{ item.logs }}{{ item.name }}.log common
 
     RewriteEngine On
     RewriteRule ^/api/[^/]+/v1/ /index_rest.php [L]
