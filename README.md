@@ -70,8 +70,7 @@ $ ansible-playbook -i local playbook/provisioning.yml
 ```
 
 ##Miscellaneous info
-* backups_enabled parameter in digital_ocean ansible module is currently not supported, [it will be in ansible 1.6](http://docs.ansible.com/digital_ocean_module.html)
-* A standard [eZ Publish 5.x](http://confluence.ez.no) Vhost will be added during the HTTPD installation (The ServerName is specified inside the /playbook/vars/apache.yml config file)
+* A standard [eZ Publish 5.x](http://doc.ez.no) Vhost will be added during the HTTPD installation (The ServerName is specified inside the /playbook/vars/apache.yml config file)
 * Last [Composer](http://getcomposer.com) package will be installed by default
 * PHP packeges are splitted in 2 groups to avoid ansible/yum hanging
 
